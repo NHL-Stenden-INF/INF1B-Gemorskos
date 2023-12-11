@@ -1,0 +1,32 @@
+html, body{
+    margin: auto;
+    padding: 0;
+}
+.header{
+    display: flex;
+}
+.foto{
+        max-width: 15vw;
+    }
+/*Sign-in page*/
+.signin_page{
+    display: flex;
+    justify-content: center;
+}
+.login{
+    display: flex;
+    justify-content: center;
+}
+.login_img{
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+.login_img2{
+    max-width: 15vw;
+}
+.action_page{
+    display: flex;
+}
+.container{
+    padding: 16px;
+}
