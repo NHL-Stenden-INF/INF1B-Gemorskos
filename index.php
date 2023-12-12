@@ -15,7 +15,7 @@
     <div class="signin_page">
         <h1>Welkom, Log hier in!</h1>
     </div>
-    
+    Hello, World!
     <div class="login">
         <form action="action_page.php" method="post">
             <div class="login_img">
