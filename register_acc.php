@@ -17,13 +17,15 @@
         <p>Please fill in this form to create an account.</p>
         <form action="" method="post">
             <label>Full Name</label>
-            <input type="text" name="name" required>
+            <input type="text" name="name" required><br>
             <label>Email Address</label>
-            <input type="email" name="email" required>
+            <input type="email" name="email" required><br>
             <label>Password</label>
-            <input type="password" name="password" required>
+            <input type="password" name="password" required><br>
             <label>Confirm Password</label>
-            <input type="password" name="confirm_password" required>
+            <input type="password" name="confirm_password" required><br>
+            <input type="submit" name="submit" value="Submit">
+            <p>Already have an account? <a href="index.php">Login here</a>.</p>
         </form>
     </div>
 </body>
