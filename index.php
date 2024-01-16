@@ -35,7 +35,7 @@
         </div>
         <div class="container">
             <button class="cancelbtn" type="button">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
+            <span class="psw">No <a href="register_acc.php">account?</a></span>
         </div>
         </form>
     </div>
