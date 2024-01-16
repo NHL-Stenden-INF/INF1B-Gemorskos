@@ -1,3 +1,6 @@
+<?php
+    include 'db_userconnection.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,12 +44,9 @@
     </div>
     <div>
         <p>Test connectie</p>
-<?php
-include 'db_userconnection.php';
-$conn = OpenCon();
-echo "Connected Succesfully";
-CloseCon($conn);
-?>
+        <?php
+            echo $log;
+        ?>
     </div>
 </body>
 </html>
