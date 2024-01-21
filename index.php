@@ -20,25 +20,22 @@
     </div>
     
     <div class="login">
-        <form action="action_page.php" method="post">
+        <form action="" method="post">
             <div class="login_img">
                 <img class="login_img2" src="img/Gemorskos logo wit.png" alt="Logo">
             </div>
         <div class="container">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <label for="uname"><b>Email Address</b></label>
+            <input type="email" placeholder="Enter Username" name="email" required>
             <br>
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="password" placeholder="Enter Password" name="password" required>
             <br>
-            <button type="submit">Login</button>
-            <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
+            <input type="submit" name="submit" value="Submit">
         </div>
         <div class="container">
             <button class="cancelbtn" type="button">Cancel</button>
-            <span class="psw">No <a href="register_acc.php">account?</a></span>
+            <span class="psw">No <a href="register.php">account?</a></span>
         </div>
         </form>
     </div>
