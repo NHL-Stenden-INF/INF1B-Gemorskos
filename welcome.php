@@ -15,6 +15,7 @@ if (!isset($_SESSION["userid"]) || $_SESSION["userid"] === null) {
     <title>Document</title>
 </head>
 <body>
-    <p>U bent ingelogd!</p>
+    <p>U bent ingelogd als <b><?php echo $_SESSION['user']['name']; ?></b>! <br>Met als email adress <b><?php echo $_SESSION['user']['email']; ?></b></p>
+    <a href="logout.php">Uitloggen</a>
 </body>
 </html>

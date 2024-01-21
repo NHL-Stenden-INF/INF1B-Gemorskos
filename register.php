@@ -1,7 +1,7 @@
 <?php
 
-require_once "db_userconnection.php";
-require_once "session.php";
+include "db_userconnection.php";
+include "session.php";
 
 $error = '';
 
@@ -94,6 +94,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             <input type="password" name="confirm_password" required><br>
             <input type="submit" name="submit" value="Submit">
             <p>Already have an account? <a href="index.php">Login here</a>.</p>
+            <?php
+                echo $error;
+            ?>
         </form>
     </div>
 </body>
