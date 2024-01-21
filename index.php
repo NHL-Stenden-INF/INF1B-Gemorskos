@@ -1,9 +1,50 @@
 <?php
     
+// require_once "config.php";
+// require_once "session.php";
+
+// $error = "";
+// if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+
+//     $email = trim($_POST["email"]);
+//     $password = trim($_POST["password"]);
+
+//     if (empty($email)) {
+//         $error .= "<p>Please enter email.</p>";
+//     }
+
+//     if (empty($password)) {
+//         $error .= "<p>Please enter your password</p>";
+//     }
+
+//     if (empty($error)) {
+//         if($query = $db->prepare("SELECT * FROM users WHERE email = ?")) {
+//             $query->bind_param("s", $email);
+//             $query->execute();
+//             $row = $query->fetch();
+//             if ($row) {
+//                 if (password_verify($password, $row["password"])) {
+//                     $_SESSION["userid"] = $row["id"];
+//                     $_SESSION["user"] = $row;
+
+//                     header("location: welcome.php");
+//                     exit;
+//                 } else {
+//                     $error .= "<p>The password is not valid.</p>";
+//                 }
+//             } else {
+//                 $error .= "<p>No User exist with that email address.</p>";
+//             }
+//         }
+//         $query->close();
+//     }
+// }
+
 require_once "config.php";
 require_once "session.php";
 
 $error = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
     $email = trim($_POST["email"]);
@@ -18,25 +59,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     }
 
     if (empty($error)) {
-        if($query = $db->prepare("SELECT * FROM users WHERE email = ?")) {
-            $query->bind_param("s", $email);
+        if ($query = $db->prepare("SELECT * FROM users WHERE email = ?")) {
+            $query->bindParam(1, $email);
             $query->execute();
-            $row = $query->fetch();
+            $row = $query->fetch(PDO::FETCH_ASSOC);
             if ($row) {
                 if (password_verify($password, $row["password"])) {
                     $_SESSION["userid"] = $row["id"];
                     $_SESSION["user"] = $row;
-
                     header("location: welcome.php");
                     exit;
                 } else {
                     $error .= "<p>The password is not valid.</p>";
                 }
             } else {
-                $error .= "<p>No User exist with that email address.</p>";
+                $error .= "<p>No User exists with that email address.</p>";
             }
         }
-        $query->close();
+        $query->closeCursor();
     }
 }
 
