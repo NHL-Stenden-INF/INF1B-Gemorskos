@@ -40,16 +40,15 @@
 //     }
 // }
 
-require_once "config.php";
-require_once "session.php";
+include "config.php";
+include "session.php";
 
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
-
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
-
+    //Decodign the html form stuff into PHP 
+    $email = filter_input(INPUT_POST, 'email');
+    $password = filter_input(INPUT_POST, 'password');
     if (empty($email)) {
         $error .= "<p>Please enter email.</p>";
     }
@@ -59,11 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     }
 
     if (empty($error)) {
-        if ($query = $db->prepare("SELECT * FROM users WHERE email = ?")) {
-            $query->bindParam(1, $email);
+        //checking if the email is already in use
+        if ($query = $dbHandler->prepare("SELECT * FROM users WHERE email = :email")) {
+            //fetch the userdata
+            $query->bindParam(':email', $email);
             $query->execute();
             $row = $query->fetch(PDO::FETCH_ASSOC);
             if ($row) {
+                //checking if the password is correct
                 if (password_verify($password, $row["password"])) {
                     $_SESSION["userid"] = $row["id"];
                     $_SESSION["user"] = $row;
@@ -109,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
             </div>
         <div class="container">
             <label><b>Email Address</b></label>
-            <input type="email" placeholder="Enter Username" name="email" required>
+            <input type="email" placeholder="Enter E-mail" name="email" required>
         <br>
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
@@ -119,6 +121,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         <div class="container">
             <p>No <a href="register.php">account?</a></p>
         </div>
+        <?php
+            echo $error;
+        ?>
         </form>
     </div>
 </body>
