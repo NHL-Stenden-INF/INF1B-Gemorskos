@@ -6,35 +6,43 @@ require_once "session.php";
 $error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-
-    $fullname = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
-    $confirm_password = trim($_POST['confirm_password']);
+    //decoding html form
+    $fullname = htmlspecialchars(filter_input(INPUT_POST, 'name'));
+    $email = filter_input(INPUT_POST, 'email');
+    $password = filter_input(INPUT_POST, 'password');
+    $confirm_password = filter_input(INPUT_POST, 'confirm_password');
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
-
+    //db stuff
     try {
-        $checkQuery = $dbHandler->prepare("SELECT * FROM users WHERE email = ?");
-        $checkQuery->bindParam(1, $email);
+        $checkQuery = $dbHandler->prepare("SELECT * FROM users WHERE email = :email");
+        $checkQuery->bindParam(':email', $email);
         $checkQuery->execute();
         $result = $checkQuery->fetch(PDO::FETCH_ASSOC);
-
+        //checking for password and stuffs
         if ($result) {
             $error = '<p>The email address is already registered!</p>';
         } else {
-            if (strlen($password) < 6) {
+            if (strlen($password) < 6) 
+            {
                 $error = "<p>Password must have at least 6 characters.</p>";
-            } elseif (empty($confirm_password)) {
+            } 
+            elseif (empty($confirm_password)) 
+            {
                 $error = "<p>Please enter confirm password.</p>";
-            } elseif ($password != $confirm_password) {
+            } 
+            elseif ($password != $confirm_password) 
+            {
                 $error = "<p>Passwords do not match.</p>";
-            } else {
-                $insertQuery = $dbHandler->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?);");
-                $insertQuery->bindParam(1, $fullname);
-                $insertQuery->bindParam(2, $email);
-                $insertQuery->bindParam(3, $password_hash);
+            } 
+            else 
+            {
+                //actually putting it into the db
+                $insertQuery = $dbHandler->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password);");
+                $insertQuery->bindParam(':name', $fullname);
+                $insertQuery->bindParam(':email', $email);
+                $insertQuery->bindParam(':password', $password_hash);
                 $result = $insertQuery->execute();
-
+                //display status to user
                 if ($result) {
                     $error = "<p>Your registration was successful!</p>";
                 } else {

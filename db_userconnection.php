@@ -3,6 +3,9 @@
     $dbuser = "root";
     $dbpass = "1234";
     $dbname = "gemorskos_users";
+    // remove before pushing
+    // $dbhost = 'mysql';
+    // $dbpass = 'qwerty';
     try
     {
         $dbHandler = new PDO ("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);

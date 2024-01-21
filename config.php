@@ -3,6 +3,9 @@ $host = "127.0.0.1";
 $dbname = "gemorskos_users";
 $username = "root";
 $password = "1234";
+// remove before pushing
+// $host = 'mysql';
+// $password = 'qwerty';
 
 try {
     $dbHandler = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
