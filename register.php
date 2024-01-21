@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 $error.= "<p>Please enter confirm password.</p>";
             } else {
                 if (empty($error) && ($password != $confirm_password)) {
-                    $error .= "<p>Password dit not match.</p>"
+                    $error .= "<p>Password dit not match.</p>";
                 }
             }
             if (empty($error)) {
@@ -37,16 +37,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 if ($result) {
                     $error .= "<p>Your registration was successful!</p>";
                 } else {
-                    $error .= "<p>Something went wrong!</p>"
+                    $error .= "<p>Something went wrong!</p>";
                 }
             }
         }
     }
     $query->close();
     $insertQuery->close();
-    #mysqli_close($db) Niet voor ons, ivm PDO
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
