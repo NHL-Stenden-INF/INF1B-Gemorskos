@@ -94,6 +94,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         <div>
             <img class="foto" src="img/Gemorskos logo zwart.png" alt="Logo">
         </div>
+        <div>
+            <a href="upload_page.php">Upload bestanden!</a>
+        </div>
     </header>
     <div class="signin_page">
         <h1>Welkom, Log hier in!</h1>
