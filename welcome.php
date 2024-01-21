@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["userid"]) || $_SESSION["userid"] !== true) {
+if (!isset($_SESSION["userid"]) || $_SESSION["userid"] === null) {
     header ("location: index.php");
     exit;
 }

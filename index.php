@@ -74,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
             <input type="submit" name="submit" value="Submit">
         </div>
         <div class="container">
-            <input type="submit" name="submit" value="submit">
             <p>No <a href="register.php">account?</a></p>
         </div>
         </form>

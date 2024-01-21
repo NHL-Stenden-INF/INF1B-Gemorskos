@@ -3,7 +3,7 @@
 session_start();
 
 //If user is logged in then redirect to home page
-if (isset($_SESSION["userid"]) && $_SESSION["userid"] === true) {
+if (isset($_SESSION["userid"]) && $_SESSION["userid"] !== null) {
     header("location: welcome.php");
     exit;
 }
