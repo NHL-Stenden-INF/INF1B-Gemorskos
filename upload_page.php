@@ -19,7 +19,7 @@
 </header>
     <form class="form" action="upload.php" method="post" enctype="multipart/form-data">
         <p>Select image to upload:</p>
-        <input type="file" name="image[]" multiple><br>
+        <input type="file" name="file"><br>
         <input type="submit" value="Submit" name="submit">
     </form>
 </body>
